@@ -32,11 +32,10 @@
                     return this;
                 },
                 go: function() {
-                    var testNum = w.localStorage["scenario-"+testName] || Math.floor(Math.random() * tests[testName].length),
-                        test = tests[testName][testNum],
-                        slug = utils.toSlug(test.name);
+                    w.localStorage["scenario-"+testName] = w.localStorage["scenario-"+testName] || Math.floor(Math.random() * tests[testName].length);
 
-                    w.localStorage["scenario-"+testName] = testNum;
+                    var test = tests[testName][w.localStorage["scenario-"+testName]],
+                        slug = utils.toSlug(test.name);
 
                     d.body.className += " "+slug;
 
