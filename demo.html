@@ -25,6 +25,7 @@
             
             <input type="button" id="finish" value="Yes">
             <input type="button" onclick="window.location.reload()" value="No">
+            <input type="button" id="reset" value="Reset">
             
             <div><img id="toShow"></div>
             
@@ -73,6 +74,11 @@
                 
                 on( $('finish'), 'click', function(e){
                     test.complete();
+                    window.location.reload();
+                });
+
+                on( $('reset'), 'click', function(e){
+                    test.reset();
                     window.location.reload();
                 });
                 
