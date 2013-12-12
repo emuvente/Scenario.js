@@ -4,7 +4,7 @@
 
     var Namespace = "Scenario",
 
-        Tester = Tester || function (testName) {
+        Tester = Tester || function (testName, testProps) {
 
             var 
             cache = {
@@ -46,9 +46,9 @@
 
                     cache.ranTests[testName] = test.name;
                     
-                    utils.track(testName+" Mid", {
+                    utils.track(testName+" Mid", utils.extend({
                         test: test.name
-                    });
+                    }), testProps);
                     
                     if (typeof test.fn === "function") {
                         test.fn.call(null, {
@@ -58,7 +58,7 @@
                     }
                     
                     this.complete = function(fn){
-                        utils.track(testName+" Finish", null, fn);
+                        utils.track(testName+" Finish", testProps, fn);
                     };
 
                     this.reset = function() {
@@ -70,7 +70,7 @@
 
             tests[testName] = tests[testName] || [];
             
-            utils.track(testName+" Start");
+            utils.track(testName+" Start", testProps);
             
             return Public;
         };
