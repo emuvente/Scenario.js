@@ -21,6 +21,11 @@
                 },
                 toSlug: function (s) {
                     return s.toLowerCase().replace(/-+/g, "").replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+                },
+                extend: function(target, source){
+                    for(var i in source) {
+                        target[i] = source[i];
+                    }
                 }
             },
             Public = {
