@@ -55,6 +55,10 @@
                     this.complete = function(fn){
                         utils.track(testName+" Finish", null, fn);
                     };
+
+                    this.reset = function() {
+                        delete w.localStorage["scenario-"+testName];
+                    };
                     return this;
                 }
             };
