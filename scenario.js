@@ -26,6 +26,7 @@
                     for(var i in source) {
                         target[i] = source[i];
                     }
+                    return target;
                 }
             },
             Public = {
