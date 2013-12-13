@@ -27,6 +27,27 @@
                         target[i] = source[i];
                     }
                     return target;
+                },
+                // pick a random index from the given weighted values array
+                weightedRandom: function(weights) {
+                    var total = 0;
+
+                    for(var i in weights) {
+                        total += weights[i];
+                    }
+
+                    var highend = total,
+                        selected,
+                        r = Math.random() * total;
+
+                    for(var i in weights) {
+                        if(highend-weights[i] <= r && r < highend) {
+                            selected = i;
+                        }
+                        highend -= weights[i];
+                    }
+
+                    return selected;
                 }
             },
             Public = {
