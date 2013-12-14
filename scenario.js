@@ -51,15 +51,21 @@
                 }
             },
             Public = {
-                test: function (name, fn) {
+                test: function (name, weight, fn) {
                     tests[testName].push({
                         name: name,
+                        weight: weight,
                         fn: fn
                     });
                     return this;
                 },
                 go: function() {
-                    w.localStorage["scenario-"+testName] = w.localStorage["scenario-"+testName] || Math.floor(Math.random() * tests[testName].length);
+                    var weights = [];
+                    for(var i in tests[testName]) {
+                        weights[i] = tests[testName][i].weight;
+                    }
+
+                    w.localStorage["scenario-"+testName] = w.localStorage["scenario-"+testName] || utils.weightedRandom(weights);
 
                     var test = tests[testName][w.localStorage["scenario-"+testName]],
                         slug = utils.toSlug(test.name);

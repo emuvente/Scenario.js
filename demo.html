@@ -67,9 +67,9 @@
                 var test = 
                 
                 new Scenario('Liked Images')
-                .test('PlaceKitten', function(){ $('toShow').src = 'http://placekitten.com/'+r(200,300)+'/'+r(200,300)+''; })
-                .test('PlaceSheen', function(){ $('toShow').src = 'http://placesheen.com/'+r(200,300)+'/'+r(200,300)+''; })
-                .test('Horror', function(){ $('toShow').src = 'http://www.bubblews.com/assets/images/news/1766278232_1366422715.gif'; })
+                .test('PlaceKitten', 50, function(){ $('toShow').src = 'http://placekitten.com/'+r(200,300)+'/'+r(200,300)+''; })
+                .test('PlaceSheen', 50, function(){ $('toShow').src = 'http://placesheen.com/'+r(200,300)+'/'+r(200,300)+''; })
+                .test('Horror', 1, function(){ $('toShow').src = 'http://www.bubblews.com/assets/images/news/1766278232_1366422715.gif'; })
                 .go();
                 
                 on( $('finish'), 'click', function(e){
