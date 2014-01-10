@@ -33,6 +33,7 @@ API
 
  - Initializes a new test and returns two functions, `test`, and `go`.
 
+- - -
 
     test( String name[, number weight, function fn] )
 
@@ -41,12 +42,14 @@ API
  - `weight` is an optional weight to give the variant when selecting.
  - `fn` is an optional function may be passed in the third parameter that will execute if the test case is chosen.
 
+- - -
 
     go()
 
  - Rolls the dice and calls one of the variants.
  - Returns the instance based method(s) `complete`.
 
+- - -
 
     complete()
 
