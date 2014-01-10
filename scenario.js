@@ -48,24 +48,54 @@
                     }
 
                     return selected;
+                },
+                random: function(max) {
+                    return Math.floor(Math.random() * max);
                 }
             },
             Public = {
                 test: function (name, weight, fn) {
+                    if(typeof name != 'string') {
+                        throw "Scenario.test(): 'name' must be a string";
+                    }
+                    if(weight != undefined) {
+                        if(typeof weight != 'number') {
+                            throw "Scenario.test(): 'weight' must be a number";
+                        }
+                        if(weight == 0) {
+                            throw "Scenario.test(): 'weight' cannot be zero";
+                        }
+                    }
+                    if(fn != undefined && typeof fn != 'function') {
+                        throw "Scenario.test(): 'fn' must be a function";
+                    }
+
                     tests[testName].push({
                         name: name,
                         weight: weight,
                         fn: fn
                     });
+
                     return this;
                 },
                 go: function() {
-                    var weights = [];
+                    var weights = [],
+                        weighted = true;
+
                     for(var i in tests[testName]) {
+                        if(tests[testName][i].weight === undefined) {
+                            weighted = false;
+                            break;
+                        }
                         weights[i] = tests[testName][i].weight;
                     }
 
-                    w.localStorage["scenario-"+testName] = w.localStorage["scenario-"+testName] || utils.weightedRandom(weights);
+                    if(weighted) {
+                        w.localStorage["scenario-"+testName] = w.localStorage["scenario-"+testName] || utils.weightedRandom(weights);
+                    }
+                    else {
+                        w.localStorage["scenario-"+testName] = w.localStorage["scenario-"+testName] || utils.random(tests[testName].length);
+                    }
 
                     var test = tests[testName][w.localStorage["scenario-"+testName]],
                         slug = utils.toSlug(test.name);
